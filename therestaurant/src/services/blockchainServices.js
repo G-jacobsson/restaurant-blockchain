@@ -58,13 +58,14 @@ export const blockchainService = {
   ) => {
     try {
       const contract = getWriteContract();
-      await contract.createBooking(
+      const transaction = await contract.createBooking(
         numberOfGuests,
         name,
         date,
         time,
         restaurantId
       );
+      await transaction.wait();
       console.log('Booking created successfully');
     } catch (error) {
       console.error('Failed to create booking:', error);
