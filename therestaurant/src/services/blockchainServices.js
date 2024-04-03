@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
 import { ADDRESS, ABI, RESTAURANT_ID } from '../config';
+import { id } from 'ethers/lib/utils';
 
 const getProvider = () => {
   if (window.ethereum) {
@@ -35,6 +36,28 @@ export const blockchainService = {
     const restaurant = await contract.restaurants(id);
     console.log(`Restaurant ID: ${restaurant.id}`);
     console.log(`Restaurant Name: ${restaurant.name}`);
+  },
+
+  createBooking: async (
+    numberOfGuests,
+    name,
+    date,
+    time,
+    restaurantId = RESTAURANT_ID
+  ) => {
+    try {
+      const contract = getWriteContract();
+      await contract.createBooking(
+        numberOfGuests,
+        name,
+        date,
+        time,
+        restaurantId
+      );
+      console.log('Booking created successfully');
+    } catch (error) {
+      console.error('Failed to create booking:', error);
+    }
   },
 };
 
