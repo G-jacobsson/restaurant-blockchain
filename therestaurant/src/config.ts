@@ -325,3 +325,4 @@ export const ABI = [
     type: 'function',
   },
 ];
+export const RESTAURANT_ID = 7;
