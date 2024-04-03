@@ -71,6 +71,23 @@ export const blockchainService = {
       console.error('Failed to create booking:', error);
     }
   },
+
+  editBooking: async (id, numberOfGuests, name, date, time) => {
+    try {
+      const contract = getWriteContract();
+      const transaction = await contract.editBooking(
+        id,
+        numberOfGuests,
+        name,
+        date,
+        time
+      );
+      await transaction.wait();
+      console.log('Booking edited successfully');
+    } catch (error) {
+      console.error('Failed to edit booking:', error);
+    }
+  },
 };
 
 // let restaurantId;
