@@ -1,11 +1,22 @@
 import { ethers } from 'ethers';
 import { ADDRESS, ABI } from '../config';
 
-if (window.ethereum) {
-  window.provider = new ethers.providers.Web3Provider(window.ethereum);
-} else {
-  console.error('No ethereum provider found');
-}
+const getProvider = () => {
+  if (window.ethereum) {
+    return new ethers.providers.Web3Provider(window.ethereum);
+  } else {
+    console.error('No ethereum provider found');
+  }
+};
+
+export const connectWallet = async () => {
+  try {
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    return getProvider();
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const signer = window.provider.getSigner();
 const contract = new ethers.Contract(ADDRESS, ABI, signer);
