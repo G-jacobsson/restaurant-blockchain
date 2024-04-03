@@ -29,18 +29,14 @@ export const getWriteContract = () => {
   return new ethers.Contract(ADDRESS, ABI, signer);
 };
 
-export const checkRestaurantDetails = async () => {
-  try {
+export const blockchainService = {
+  getRestaurant: async (id = RESTAURANT_ID) => {
     const contract = getReadContract();
-    const restaurant = await contract.restaurants(RESTAURANT_ID);
+    const restaurant = await contract.restaurants(id);
     console.log(`Restaurant ID: ${restaurant.id}`);
     console.log(`Restaurant Name: ${restaurant.name}`);
-  } catch (error) {
-    console.error(error);
-  }
+  },
 };
-
-checkRestaurantDetails();
 
 // let restaurantId;
 
