@@ -6,7 +6,7 @@ export const Layout = () => {
   return (
     <div className='container'>
       <header className='site-header'>
-        <h1>The Restaurant</h1>
+        <h1 className='butterfly-kids-regular'>End of The World</h1>
         <nav>
           <ul>
             <li>
