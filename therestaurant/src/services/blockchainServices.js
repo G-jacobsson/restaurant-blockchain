@@ -1,6 +1,5 @@
 import { ethers } from 'ethers';
 import { ADDRESS, ABI, RESTAURANT_ID } from '../config';
-import { id } from 'ethers/lib/utils';
 
 const getProvider = () => {
   if (window.ethereum) {
