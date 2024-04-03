@@ -18,12 +18,16 @@ export const connectWallet = async () => {
   }
 };
 
-const signer = window.provider.getSigner();
-const contract = new ethers.Contract(ADDRESS, ABI, signer);
+export const getReadContract = () => {
+  const provider = getProvider();
+  return new ethers.Contract(ADDRESS, ABI, provider);
+};
 
-// let accounts = await window.ethereum.request({
-//   method: 'eth_requestAccounts',
-// });
+export const getWriteContract = () => {
+  const provider = getProvider();
+  const signer = provider.getSigner();
+  return new ethers.Contract(ADDRESS, ABI, signer);
+};
 
 let restaurantId;
 
