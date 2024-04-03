@@ -38,6 +38,17 @@ export const blockchainService = {
     console.log(`Restaurant Name: ${restaurant.name}`);
   },
 
+  getBookings: async (id = RESTAURANT_ID) => {
+    try {
+      const contract = getReadContract();
+      const bookings = await contract.getBookings(id);
+      console.log('Bookings:', bookings);
+      return bookings;
+    } catch (error) {
+      console.error('Failed to get bookings:', error);
+    }
+  },
+
   createBooking: async (
     numberOfGuests,
     name,
