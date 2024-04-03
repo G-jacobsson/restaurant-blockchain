@@ -1,4 +1,5 @@
 import './App.css';
+import './services/blockchainServices';
 
 function App() {
   return (

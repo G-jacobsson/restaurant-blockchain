@@ -31,15 +31,17 @@ export const getWriteContract = () => {
 
 let restaurantId;
 
-export const createRestaurant = async (name) => {
+const createRestaurant = async (name) => {
   try {
-    const tx = await contract.createRestaurant(name);
-    const receipt = await tx.wait();
-    const event = receipt.events?.find((e) => e.event === 'RestaurantCreated');
-    const restaurantId = event?.args?.id.toNumber();
+    const contract = getWriteContract();
+    await contract.createRestaurant(name);
+    const response = await contract.restaurantCount();
+    restaurantId = response.toNumber();
     console.log('ID:', restaurantId);
     return restaurantId;
   } catch (error) {
     console.error(error);
   }
 };
+
+createRestaurant('End of The World');
