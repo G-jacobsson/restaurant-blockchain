@@ -88,6 +88,17 @@ export const blockchainService = {
       console.error('Failed to edit booking:', error);
     }
   },
+
+  removeBooking: async (id) => {
+    try {
+      const contract = getWriteContract();
+      const transaction = await contract.removeBooking(id);
+      await transaction.wait();
+      console.log('Booking removed successfully');
+    } catch (error) {
+      console.error('Failed to remove booking:', error);
+    }
+  },
 };
 
 // let restaurantId;
