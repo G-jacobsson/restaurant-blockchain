@@ -1,5 +1,5 @@
 import { ethers } from 'ethers';
-import { ADDRESS, ABI } from '../config';
+import { ADDRESS, ABI, RESTAURANT_ID } from '../config';
 
 const getProvider = () => {
   if (window.ethereum) {
@@ -29,19 +29,32 @@ export const getWriteContract = () => {
   return new ethers.Contract(ADDRESS, ABI, signer);
 };
 
-let restaurantId;
-
-const createRestaurant = async (name) => {
+export const checkRestaurantDetails = async () => {
   try {
-    const contract = getWriteContract();
-    await contract.createRestaurant(name);
-    const response = await contract.restaurantCount();
-    restaurantId = response.toNumber();
-    console.log('ID:', restaurantId);
-    return restaurantId;
+    const contract = getReadContract();
+    const restaurant = await contract.restaurants(RESTAURANT_ID);
+    console.log(`Restaurant ID: ${restaurant.id}`);
+    console.log(`Restaurant Name: ${restaurant.name}`);
   } catch (error) {
     console.error(error);
   }
 };
 
-createRestaurant('End of The World');
+checkRestaurantDetails();
+
+// let restaurantId;
+
+// const createRestaurant = async (name) => {
+//   try {
+//     const contract = getWriteContract();
+//     await contract.createRestaurant(name);
+//     const response = await contract.restaurantCount();
+//     restaurantId = response.toNumber();
+//     console.log('ID:', restaurantId);
+//     return restaurantId;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+// createRestaurant('End of The World');
