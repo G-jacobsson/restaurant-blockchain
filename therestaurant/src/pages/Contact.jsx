@@ -5,30 +5,35 @@ export const Contact = () => {
     <div className='form-container'>
       <form>
         <h2 className='title'>Talk to Us</h2>
-        <input
-          type='text'
-          className='fullname'
-          placeholder='Fullname'
-        />
         <div className='form-control'>
+          <input
+            type='text'
+            className='fullname'
+            placeholder='Fullname'
+            required
+          />
           <input
             type='text'
             className='phone'
             placeholder='Phone Number'
+            required
           />
           <input
-            type='text'
+            type='email'
             className='email'
             placeholder='Email'
+            required
           />
+          <textarea
+            name='message'
+            id='message'
+            cols='40'
+            rows='10'
+            placeholder='Message...'
+            required
+          ></textarea>
+          <button className='btn'>Send</button>
         </div>
-        <textarea
-          name='message'
-          id='message'
-          cols='50'
-          rows='20'
-          placeholder='Message...'
-        ></textarea>
       </form>
     </div>
   );
