@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { blockchainService } from '../services/blockchainServices';
 
 export const SearchForm = () => {
   const [numberOfGuests, setNumberOfGuests] = useState('');
   const [date, setDate] = useState('');
+  const [bookings, setBookings] = useState([]);
+
   const minGuests = 1;
   const maxGuests = 6;
 
@@ -18,11 +21,17 @@ export const SearchForm = () => {
     );
   }
 
-  const showAvailability = (e) => {
+  const showAvailability = async (e) => {
     e.preventDefault();
-    console.log('Show availability', numberOfGuests, date);
-    setNumberOfGuests('');
-    setDate('');
+    try {
+      const bookings = await blockchainService.getBookings();
+      setBookings(bookings);
+      console.log('Show availability', numberOfGuests, date);
+      setNumberOfGuests('');
+      setDate('');
+    } catch (error) {
+      console.error('Failed to show availability:', error);
+    }
   };
 
   return (
@@ -50,6 +59,8 @@ export const SearchForm = () => {
         </label>
         <button type="submit">Search</button>
       </form>
+
+      {/* <SearchResults bookings={bookings} /> */}
     </>
   );
 };
