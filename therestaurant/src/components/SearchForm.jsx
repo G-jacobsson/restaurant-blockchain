@@ -36,8 +36,13 @@ export const SearchForm = () => {
 
   return (
     <>
-      <div>Search for available tables at your desired date here</div>
-      <form onSubmit={showAvailability}>
+      <h3 className="search-info">
+        Search for available tables at your desired date here
+      </h3>
+      <form
+        className="search-form"
+        onSubmit={showAvailability}
+      >
         <label>
           Number of guests:
           <select
@@ -57,7 +62,12 @@ export const SearchForm = () => {
             onChange={(e) => setDate(e.target.value)}
           />
         </label>
-        <button type="submit">Search</button>
+        <button
+          className="search-button"
+          type="submit"
+        >
+          Search
+        </button>
       </form>
 
       {/* <SearchResults bookings={bookings} /> */}
