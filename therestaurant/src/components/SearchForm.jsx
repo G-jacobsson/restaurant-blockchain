@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { blockchainService } from '../services/blockchainServices';
+import { SearchResults } from './SearchResults';
 
 export const SearchForm = () => {
   const [numberOfGuests, setNumberOfGuests] = useState('');
   const [date, setDate] = useState('');
   const [bookings, setBookings] = useState([]);
+  const [searchClicked, setSearchClicked] = useState(false);
 
   const minGuests = 1;
   const maxGuests = 6;
@@ -23,6 +25,7 @@ export const SearchForm = () => {
 
   const showAvailability = async (e) => {
     e.preventDefault();
+    setSearchClicked(true);
     try {
       const bookings = await blockchainService.getBookings();
       setBookings(bookings);
@@ -70,7 +73,14 @@ export const SearchForm = () => {
         </button>
       </form>
 
-      {/* <SearchResults bookings={bookings} /> */}
+      {searchClicked && (
+        <SearchResults
+          bookings={bookings}
+          date={date}
+          numberOfGuests={numberOfGuests}
+          searchClicked={searchClicked}
+        />
+      )}
     </>
   );
 };
