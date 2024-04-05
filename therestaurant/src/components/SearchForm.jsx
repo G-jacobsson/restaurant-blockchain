@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { blockchainService } from '../services/blockchainServices';
+import { SearchResults } from './SearchResults';
 
 export const SearchForm = () => {
   const [numberOfGuests, setNumberOfGuests] = useState('');
   const [date, setDate] = useState('');
   const [bookings, setBookings] = useState([]);
+  const [searchClicked, setSearchClicked] = useState(false);
 
   const minGuests = 1;
   const maxGuests = 6;
@@ -23,6 +25,7 @@ export const SearchForm = () => {
 
   const showAvailability = async (e) => {
     e.preventDefault();
+    setSearchClicked(true);
     try {
       const bookings = await blockchainService.getBookings();
       setBookings(bookings);
@@ -36,8 +39,13 @@ export const SearchForm = () => {
 
   return (
     <>
-      <div>Search for available tables at your desired date here</div>
-      <form onSubmit={showAvailability}>
+      <h3 className="search-info">
+        Search for available tables at your desired date here
+      </h3>
+      <form
+        className="search-form"
+        onSubmit={showAvailability}
+      >
         <label>
           Number of guests:
           <select
@@ -57,10 +65,22 @@ export const SearchForm = () => {
             onChange={(e) => setDate(e.target.value)}
           />
         </label>
-        <button type="submit">Search</button>
+        <button
+          className="search-button"
+          type="submit"
+        >
+          Search
+        </button>
       </form>
 
-      {/* <SearchResults bookings={bookings} /> */}
+      {searchClicked && (
+        <SearchResults
+          bookings={bookings}
+          date={date}
+          numberOfGuests={numberOfGuests}
+          searchClicked={searchClicked}
+        />
+      )}
     </>
   );
 };
