@@ -57,7 +57,7 @@ export const SearchResults = ({ bookings, date, numberOfGuests }) => {
         <BookingPopup
           onClose={() => setShowPopup(false)}
           date={date}
-          sitting={selectedSitting}
+          time={selectedSitting}
           numberOfGuests={numberOfGuests}
         />
       )}
