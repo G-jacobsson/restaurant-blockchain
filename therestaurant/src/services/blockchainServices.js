@@ -40,11 +40,43 @@ export const blockchainService = {
   getBookings: async (id = RESTAURANT_ID) => {
     try {
       const contract = getReadContract();
-      const bookings = await contract.getBookings(id);
+      let bookings = await contract.getBookings(id);
+      bookings = bookings.map((booking) => parseInt(booking));
       console.log('Bookings:', bookings);
       return bookings;
     } catch (error) {
       console.error('Failed to get bookings:', error);
+    }
+  },
+
+  getBookingDetails: async (id = RESTAURANT_ID) => {
+    try {
+      const contract = getReadContract();
+      const bookings = await contract.getBookings(id);
+
+      const bookingIds = bookings.map((booking) => {
+        return parseInt(booking);
+      });
+      console.log('Booking ids:', bookingIds);
+
+      const bookingDetails = await Promise.all(
+        bookingIds.map(async (id) => {
+          const booking = await contract.bookings(id);
+          return {
+            id: parseInt(booking[0]._hex),
+            numberOfGuests: parseInt(booking[1]._hex),
+            name: booking[2],
+            date: booking[3],
+            time: parseInt(booking[4]._hex),
+            restaurantId: parseInt(booking[5]._hex),
+          };
+        })
+      );
+      console.log('Booking details:', bookingDetails);
+
+      return bookingDetails;
+    } catch (error) {
+      console.error('Failed to get booking details:', error);
     }
   },
 
