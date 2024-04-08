@@ -39,8 +39,6 @@ export const SearchForm = () => {
       const bookings = await blockchainService.getBookingDetails();
       setBookings(bookings);
       setSubmittedDate(date);
-      // setNumberOfGuests('');
-      // setDate('');
     } catch (error) {
       console.error('Failed to show availability:', error);
     }

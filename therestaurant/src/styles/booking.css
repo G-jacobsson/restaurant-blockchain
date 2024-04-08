@@ -135,3 +135,21 @@ label {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+input {
+  margin-bottom: 1rem;
+  border: 1px solid #ff0000;
+  height: 2rem;
+  border-radius: 10px;
+  width: 50%;
+}
+
+@media screen and (max-width: 700px) {
+  .search-form {
+    flex-direction: column;
+  }
+
+  .booking-popup-content {
+    margin: 1.5rem;
+  }
+}
