@@ -28,25 +28,28 @@
   margin: 1rem 0;
 }
 
-input,
+input[type='date'],
 select {
   font-size: 1rem;
   padding: 0.5rem;
   width: 100%;
   border-radius: 10px;
+  border: none;
+  height: auto;
+  margin-bottom: 0;
 }
 
-input:hover,
+input[type='date']:hover,
 select:hover {
   border: 1px solid #b21717;
 }
 
 label {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .search-button {
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 0.5rem 1rem;
   margin-top: 1.5rem;
   margin-left: 2rem;
@@ -55,7 +58,7 @@ label {
 }
 
 .continue-button {
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
   color: white;

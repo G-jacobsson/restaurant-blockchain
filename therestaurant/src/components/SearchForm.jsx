@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { blockchainService } from '../services/blockchainServices';
 import { SearchResults } from './SearchResults';
 
 export const SearchForm = () => {
   const [numberOfGuests, setNumberOfGuests] = useState('');
   const [date, setDate] = useState('');
+  const [submittedDate, setSubmittedDate] = useState('');
   const [bookings, setBookings] = useState([]);
   const [searchClicked, setSearchClicked] = useState(false);
 
@@ -27,11 +28,12 @@ export const SearchForm = () => {
     e.preventDefault();
     setSearchClicked(true);
     try {
-      const bookings = await blockchainService.getBookings();
+      const bookings = await blockchainService.getBookingDetails();
       setBookings(bookings);
       console.log('Show availability', numberOfGuests, date);
-      setNumberOfGuests('');
-      setDate('');
+      setSubmittedDate(date);
+      // setNumberOfGuests('');
+      // setDate('');
     } catch (error) {
       console.error('Failed to show availability:', error);
     }
@@ -76,7 +78,7 @@ export const SearchForm = () => {
       {searchClicked && (
         <SearchResults
           bookings={bookings}
-          date={date}
+          date={submittedDate}
           numberOfGuests={numberOfGuests}
           searchClicked={searchClicked}
         />
