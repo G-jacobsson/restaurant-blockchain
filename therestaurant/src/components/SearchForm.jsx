@@ -38,7 +38,6 @@ export const SearchForm = () => {
     try {
       const bookings = await blockchainService.getBookingDetails();
       setBookings(bookings);
-      console.log('Show availability', numberOfGuests, date);
       setSubmittedDate(date);
       // setNumberOfGuests('');
       // setDate('');
