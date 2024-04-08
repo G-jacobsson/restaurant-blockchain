@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { blockchainService } from '../services/blockchainServices';
 import { MdClose } from 'react-icons/md';
 
@@ -18,11 +18,6 @@ export const BookingPopup = ({
   const handleConfirm = async (e) => {
     e.preventDefault();
     try {
-      if (!numberOfGuests || !date || !time) {
-        alert('One or more booking details are missing');
-        return;
-      }
-
       if (typeof window.ethereum !== 'undefined') {
         await window.ethereum.request({
           method: 'eth_requestAccounts',
@@ -36,8 +31,8 @@ export const BookingPopup = ({
           time,
           restaurantId
         );
+
         setBookingCreated(true);
-        setTimeout(onClose, 3000);
       } else {
         alert('Error: Please install MetaMask');
       }
@@ -52,7 +47,23 @@ export const BookingPopup = ({
       onClick={onClose}
     >
       {bookingCreated ? (
-        <div className="success-message">Booking created successfully!</div>
+        <div className="success-message booking-popup-content">
+          <MdClose
+            className="close-icon"
+            onClick={() => {
+              onClose();
+              if (bookingCreated) {
+                window.location.reload();
+              }
+            }}
+          />
+          <h2 className="popup-title">Booking created successfully!</h2>
+          <h3 className="popup-subtitle">Booking confirmation</h3>
+          <p className="popup-text">
+            Your booking for {numberOfGuests} guests on {date} at {time}:00 has
+            been confirmed.
+          </p>
+        </div>
       ) : bookingfailed ? (
         <div className="error-message">
           Failed to create booking. Please try again.

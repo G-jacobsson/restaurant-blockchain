@@ -22,32 +22,42 @@ export const SearchResults = ({ bookings, date, numberOfGuests }) => {
   }, [bookings, date]);
 
   return (
-    <div>
-      <h3 className="search-info">Available Sittings: </h3>
-      <select
-        value={selectedSitting}
-        onChange={(e) => setSelectedSitting(e.target.value)}
+    <>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (selectedSitting) {
+            setShowPopup(true);
+          }
+        }}
       >
-        <option value="">Select a sitting</option>
-        {availableSittings.map(
-          ({ sitting, availableTables }, index) =>
-            availableTables > 0 && (
-              <option
-                key={index}
-                value={sitting}
-              >
-                {sitting}:00 - {availableTables} tables available
-              </option>
-            )
-        )}
-      </select>
-      <button
-        className="continue-button"
-        onClick={() => setShowPopup(true)}
-        disabled={!selectedSitting}
-      >
-        Continue booking
-      </button>
+        <h3 className="search-info">Available Sittings: </h3>
+        <select
+          value={selectedSitting}
+          onChange={(e) => setSelectedSitting(e.target.value)}
+          required
+        >
+          <option value="">Select a sitting</option>
+          {availableSittings.map(
+            ({ sitting, availableTables }, index) =>
+              availableTables > 0 && (
+                <option
+                  key={index}
+                  value={sitting}
+                >
+                  {sitting}:00 - {availableTables} tables available
+                </option>
+              )
+          )}
+        </select>
+
+        <button
+          className="continue-button"
+          type="submit"
+        >
+          Continue booking
+        </button>
+      </form>
 
       {showPopup && (
         <BookingPopup
@@ -57,6 +67,6 @@ export const SearchResults = ({ bookings, date, numberOfGuests }) => {
           numberOfGuests={numberOfGuests}
         />
       )}
-    </div>
+    </>
   );
 };
