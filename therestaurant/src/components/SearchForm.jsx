@@ -8,9 +8,17 @@ export const SearchForm = () => {
   const [submittedDate, setSubmittedDate] = useState('');
   const [bookings, setBookings] = useState([]);
   const [searchClicked, setSearchClicked] = useState(false);
+  const [minDate, setMinDate] = useState('');
 
   const minGuests = 1;
   const maxGuests = 6;
+
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    setMinDate(formattedDate);
+    setDate(formattedDate);
+  }, []);
 
   const guestOptions = [];
   for (let i = minGuests; i <= maxGuests; i++) {
@@ -63,8 +71,10 @@ export const SearchForm = () => {
           Date:
           <input
             type="date"
+            min={minDate}
             value={date}
             onChange={(e) => setDate(e.target.value)}
+            required
           />
         </label>
         <button

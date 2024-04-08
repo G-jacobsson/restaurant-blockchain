@@ -12,7 +12,8 @@ export const BookingPopup = ({
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleConfirm = async () => {
+  const handleConfirm = async (e) => {
+    e.preventDefault();
     try {
       if (!numberOfGuests || !date || !time) {
         console.error('One or more booking details are missing');
@@ -38,36 +39,46 @@ export const BookingPopup = ({
     <div className="booking-popup">
       <div className="booking-popup-content">
         <h2>Booking Details</h2>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="tel"
-          placeholder="Phone Number"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-        />
-        <button
-          className="confirm-button"
-          onClick={handleConfirm}
-        >
-          Confirm Booking
-        </button>
-        <button
-          className="cancel-button"
-          onClick={onClose}
-        >
-          Cancel Booking
-        </button>
+        <p>
+          {numberOfGuests} guests on {date} at {time}:00
+        </p>
+        <form onSubmit={handleConfirm}>
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+            pattern="[0-9]{10}"
+          />
+          <button
+            className="confirm-button"
+            type="submit"
+          >
+            Confirm Booking
+          </button>
+          <button
+            className="cancel-button"
+            type="button"
+            onClick={onClose}
+          >
+            Cancel Booking
+          </button>
+        </form>
       </div>
     </div>
   );
