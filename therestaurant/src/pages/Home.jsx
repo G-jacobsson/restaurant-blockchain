@@ -4,6 +4,7 @@ import { connectWallet } from "../services/blockchainServices";
 import "../styles/gdpr.css";
 import "../styles/home.css";
 
+
 export const Home = () => {
   const [show, setShow] = useState(true);
 
@@ -12,7 +13,7 @@ export const Home = () => {
       try {
         await connectWallet();
       } catch (error) {
-        console.error("Failed to connect wallet", error);
+        console.error('Failed to connect wallet', error);
       }
     };
 
