@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connectWallet } from "../services/blockchainServices";
+import "../styles/gdpr.css";
+import "../styles/home.css";
 
 export const Home = () => {
   const [show, setShow] = useState(true);
@@ -64,15 +66,14 @@ export const Home = () => {
       </div>
       <div className='home-container'>
         <div className='name-container imbue-variable'>
-          <h2>Welcome to The End Of the World</h2>
-          <h3>Where you'll eat your last meal</h3>
+          <h2>Welcome to the End Of The World</h2>
+          <h3>- Where you'll eat your last meal</h3>
         </div>
         <div className='description-container'>
           <p className='description imbue-variable'>
-            // Feast at the End of The World, a posh spot with amazing food. Top
-            // chefs whip up fancy dishes in a fancy setting. It's all about
-            luxury // and deliciousness here. Get ready for a meal that'll blow
-            your mind!
+            Feast at the End of The World, a posh spot with amazing food. Top
+            chefs whip up fancy dishes in a fancy setting. It's all about luxury
+            and deliciousness here. Get ready for a meal that'll blow your mind!
           </p>
           <Link
             className='link'
