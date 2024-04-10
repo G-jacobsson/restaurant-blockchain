@@ -14,6 +14,7 @@ export const BookingPopup = ({
   const [phoneNumber, setPhoneNumber] = useState('');
   const [bookingCreated, setBookingCreated] = useState(false);
   const [bookingfailed, setBookingFailed] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleConfirm = async (e) => {
     e.preventDefault();
@@ -34,10 +35,11 @@ export const BookingPopup = ({
 
         setBookingCreated(true);
       } else {
-        alert('Error: Please install MetaMask');
+        setErrorMsg('Error: Please install MetaMask');
       }
     } catch (error) {
       setBookingFailed(true);
+      setErrorMsg(error.message);
     }
   };
 
@@ -46,6 +48,7 @@ export const BookingPopup = ({
       className="booking-popup"
       onClick={onClose}
     >
+      {errorMsg && <div className="error-message">{errorMsg}</div>}
       {bookingCreated ? (
         <div className="success-message booking-popup-content">
           <MdClose

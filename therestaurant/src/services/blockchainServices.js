@@ -5,7 +5,7 @@ const getProvider = () => {
   if (window.ethereum) {
     return new ethers.providers.Web3Provider(window.ethereum);
   } else {
-    console.error('No ethereum provider found');
+    throw new Error('No ethereum provider found');
   }
 };
 
@@ -14,7 +14,7 @@ export const connectWallet = async () => {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
     return getProvider();
   } catch (error) {
-    console.error(error);
+    throw new Error(error.message);
   }
 };
 
@@ -45,7 +45,7 @@ export const blockchainService = {
       console.log('Bookings:', bookings);
       return bookings;
     } catch (error) {
-      console.error('Failed to get bookings:', error);
+      throw new Error('Failed to get bookings:' + error.message);
     }
   },
 
@@ -76,7 +76,7 @@ export const blockchainService = {
 
       return bookingDetails;
     } catch (error) {
-      console.error('Failed to get booking details:', error);
+      throw new Error('Failed to get booking details:' + error.message);
     }
   },
 
@@ -99,7 +99,7 @@ export const blockchainService = {
       await transaction.wait();
       console.log('Booking created successfully');
     } catch (error) {
-      console.error('Failed to create booking:', error);
+      throw new Error('Failed to create booking:' + error.message);
     }
   },
 
@@ -116,7 +116,7 @@ export const blockchainService = {
       await transaction.wait();
       console.log('Booking edited successfully');
     } catch (error) {
-      console.error('Failed to edit booking:', error);
+      throw new Error('Failed to edit booking:' + error.message);
     }
   },
 
@@ -127,7 +127,7 @@ export const blockchainService = {
       await transaction.wait();
       console.log('Booking removed successfully');
     } catch (error) {
-      console.error('Failed to remove booking:', error);
+      throw new Error('Failed to remove booking:' + error.message);
     }
   },
 };

@@ -9,6 +9,7 @@ export const SearchForm = () => {
   const [bookings, setBookings] = useState([]);
   const [searchClicked, setSearchClicked] = useState(false);
   const [minDate, setMinDate] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const minGuests = 1;
   const maxGuests = 6;
@@ -36,16 +37,19 @@ export const SearchForm = () => {
     e.preventDefault();
     setSearchClicked(true);
     try {
-      const bookings = await blockchainService.getBookingDetails();
-      setBookings(bookings);
+      const getBookings = await blockchainService.getBookingDetails();
+      if (getBookings) {
+        setBookings(getBookings);
+      }
       setSubmittedDate(date);
     } catch (error) {
-      console.error('Failed to show availability:', error);
+      setErrorMsg('Failed to show availability:' + error.message);
     }
   };
 
   return (
     <>
+      {errorMsg && <div className="error-message">{errorMsg}</div>}
       <h3 className="search-info">
         Search for available tables at your desired date here
       </h3>
