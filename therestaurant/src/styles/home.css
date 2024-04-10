@@ -1,0 +1,169 @@
+.home-container {
+  background-image: url("../assets/images/end-of-the-world.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  top: 0;
+  width: 100%;
+}
+.link:hover {
+  color: #ff0000;
+}
+@media screen and (min-width: 1200px) {
+  .name-container {
+    background-color: #000;
+    height: 25dvh;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+    top: 0;
+    width: max-content;
+  }
+
+  .name-container h2 {
+    color: #fffefe;
+    font-size: 4rem;
+    margin: 0;
+    padding: 0;
+    padding-left: 2rem;
+  }
+
+  .name-container h3 {
+    color: #fffefe;
+    font-size: 3rem;
+    margin: 0;
+    padding: 0;
+    padding-left: 2rem;
+  }
+
+  .description-container {
+    background-color: #000;
+    bottom: 12dvh;
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    padding: 1rem;
+    position: absolute;
+    right: 1rem;
+    width: 30dvw;
+  }
+
+  .description {
+    align-self: flex-end;
+    color: #fffefe;
+    font-size: 1.7rem;
+    line-height: 1.5;
+    font-weight: 800;
+    margin-right: 3rem;
+    margin-top: 0;
+  }
+
+  .link {
+    align-self: center;
+    border: 3px solid white;
+    border-radius: 20px;
+    color: #fffefe;
+    font-size: 1.5rem;
+    font-weight: 550;
+    margin-left: 8rem;
+    padding: 8px;
+    text-decoration: none;
+    width: max-content;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .name-container {
+    background-color: #000;
+    height: auto;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 40dvw;
+  }
+
+  .name-container h2 {
+    border-bottom: 1px solid #ff0000;
+    color: #fff;
+    font-size: 2.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .name-container h3 {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .description-container {
+    background-color: #000;
+    bottom: 13dvh;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    position: absolute;
+    right: 2dvw;
+    width: 45dvw;
+  }
+  .description {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  .link {
+    align-self: center;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    padding: 8px;
+    width: max-content;
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .name-container {
+    width: 75vw;
+    align-items: center;
+  }
+
+  .name-container h2 {
+    font-size: 2rem;
+  }
+
+  .name-container h3 {
+    font-size: 1.5rem;
+  }
+
+  .description-container {
+    width: 75vw;
+    padding: 1rem;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8rem;
+    justify-self: center;
+    margin: 0;
+  }
+
+  .link {
+    align-self: center;
+    margin-top: 1rem;
+    width: max-content;
+    font-size: 1.2rem;
+    padding: 8px;
+  }
+}

@@ -1,13 +1,26 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import "../styles/layout.css";
+import logo from "../assets/images/logo-restaurant-hwg.jpg";
 
 export const Layout = () => {
   return (
     <div className='container'>
       <header className='site-header'>
+        <div className='logo-container'>
+          <img
+            className='logo'
+            src={logo}
+            alt='Logo'
+          />
+        </div>
         <nav>
-          <ul>
+          <input
+            type='checkbox'
+            className='toggle-menu'
+          />
+          <div className='hamburger'></div>
+          <ul className='menu'>
             <li>
               <NavLink to={"/"}>Home</NavLink>
             </li>
@@ -15,7 +28,7 @@ export const Layout = () => {
               <NavLink to={"/booktable"}>Book a Table</NavLink>
             </li>
             <li>
-              <NavLink to={"/contact"}>Contact Us</NavLink>
+              <NavLink to={"/contact"}>Contact</NavLink>
             </li>
           </ul>
         </nav>
