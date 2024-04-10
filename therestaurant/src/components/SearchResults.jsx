@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { BookingPopup } from './BookingPopup';
+import React, { useState, useEffect } from "react";
+import { BookingPopup } from "./BookingPopup";
 
 const totalTables = 15;
 const sittings = [18, 21];
 
 export const SearchResults = ({ bookings, date, numberOfGuests }) => {
-  const [selectedSitting, setSelectedSitting] = useState('');
+  const [selectedSitting, setSelectedSitting] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [availableSittings, setAvailableSittings] = useState([]);
 
@@ -24,6 +24,7 @@ export const SearchResults = ({ bookings, date, numberOfGuests }) => {
   return (
     <>
       <form
+        className='search-results'
         onSubmit={(e) => {
           e.preventDefault();
           if (selectedSitting) {
@@ -31,13 +32,13 @@ export const SearchResults = ({ bookings, date, numberOfGuests }) => {
           }
         }}
       >
-        <h3 className="search-info">Available Sittings: </h3>
+        <h3 className='search-info available-sittings'>Available Sittings: </h3>
         <select
           value={selectedSitting}
           onChange={(e) => setSelectedSitting(e.target.value)}
           required
         >
-          <option value="">Select a sitting</option>
+          <option value=''>Select a sitting</option>
           {availableSittings.map(
             ({ sitting, availableTables }, index) =>
               availableTables > 0 && (
@@ -52,8 +53,8 @@ export const SearchResults = ({ bookings, date, numberOfGuests }) => {
         </select>
 
         <button
-          className="continue-button"
-          type="submit"
+          className='continue-button'
+          type='submit'
         >
           Continue booking
         </button>

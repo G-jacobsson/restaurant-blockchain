@@ -18,7 +18,7 @@
 
 /* Router Layout */
 
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 701px) {
   /* Header */
   .site-header {
     background-color: #000;
@@ -38,7 +38,7 @@
     display: flex;
     align-self: center;
     height: 10dvh;
-    width: 5dvw;
+    width: 10dvw;
     margin-left: 2rem;
     border-bottom: 1px solid #ff0000;
     border-left: 1px solid #ff0000;
@@ -87,7 +87,7 @@
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 701px) {
   .site-header {
     background-color: #000;
     border-bottom: 2px solid #ff0000;
@@ -181,19 +181,25 @@
   .toggle-menu {
     display: block;
   }
+
   .menu {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     position: fixed;
-    top: 9.8dvh;
-    right: -0rem;
+    top: 10.2dvh;
+    right: -800px;
     background: #000;
     border-bottom: 2px solid #ff0000;
-    width: 100dvw;
-    height: 30dvh;
+    width: 100%;
+    height: 10dvh;
     padding-top: 65px;
+    transition: ease-in-out 0.3s;
+  }
+
+  nav input:checked ~ .menu {
+    right: 0;
   }
 
   .menu li {
