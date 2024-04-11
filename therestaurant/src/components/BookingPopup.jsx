@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { blockchainService } from '../services/blockchainServices';
-import { MdClose } from 'react-icons/md';
+import React, { useState } from "react";
+import { blockchainService } from "../services/blockchainServices";
+import { MdClose } from "react-icons/md";
 
 export const BookingPopup = ({
   onClose,
@@ -9,18 +9,18 @@ export const BookingPopup = ({
   time,
   restaurantId,
 }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [bookingCreated, setBookingCreated] = useState(false);
   const [bookingfailed, setBookingFailed] = useState(false);
 
   const handleConfirm = async (e) => {
     e.preventDefault();
     try {
-      if (typeof window.ethereum !== 'undefined') {
+      if (typeof window.ethereum !== "undefined") {
         await window.ethereum.request({
-          method: 'eth_requestAccounts',
+          method: "eth_requestAccounts",
         });
 
         const combinedName = `${name} | ${email} | ${phoneNumber}`;
@@ -34,7 +34,7 @@ export const BookingPopup = ({
 
         setBookingCreated(true);
       } else {
-        alert('Error: Please install MetaMask');
+        alert("Error: Please install MetaMask");
       }
     } catch (error) {
       setBookingFailed(true);
@@ -43,13 +43,13 @@ export const BookingPopup = ({
 
   return (
     <div
-      className="booking-popup"
+      className='booking-popup'
       onClick={onClose}
     >
       {bookingCreated ? (
-        <div className="success-message booking-popup-content">
+        <div className='success-message booking-popup-content'>
           <MdClose
-            className="close-icon"
+            className='close-icon'
             onClick={() => {
               onClose();
               if (bookingCreated) {
@@ -57,72 +57,77 @@ export const BookingPopup = ({
               }
             }}
           />
-          <h2 className="popup-title">Booking created successfully!</h2>
-          <h3 className="popup-subtitle">Booking confirmation</h3>
-          <p className="popup-text">
+          <h2 className='popup-title'>Booking created successfully!</h2>
+          <h3 className='popup-subtitle'>Booking confirmation</h3>
+          <p className='popup-text'>
             Your booking for {numberOfGuests} guests on {date} at {time}:00 has
             been confirmed.
           </p>
         </div>
       ) : bookingfailed ? (
-        <div className="error-message">
+        <div className='error-message'>
           Failed to create booking. Please try again.
         </div>
       ) : (
         <div
-          className="booking-popup-content"
+          className='booking-popup-content'
           onClick={(e) => e.stopPropagation()}
         >
           <MdClose
-            className="close-icon"
+            className='close-icon'
             onClick={onClose}
           />
-          <h2 className="popup-title">Booking Details</h2>
-          <h3 className="popup-subtitle">
-            {numberOfGuests} guests on {date} at {time}:00{' '}
+          <h2 className='popup-title'>Booking Details</h2>
+          <h3 className='popup-subtitle'>
+            {numberOfGuests} guests on {date} at {time}:00{" "}
           </h3>
 
-          <p className="popup-text">
-            {' '}
+          <p className='popup-text'>
+            {" "}
             Please provide your contact details to confirm the booking.
           </p>
 
           <form
-            className="popup-form"
+            className='popup-form'
             onSubmit={handleConfirm}
           >
             <input
-              type="text"
-              placeholder="Name"
+              type='text'
+              placeholder='Name'
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              className='name-input'
             />
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              required
-              pattern="[0-9]{10}"
-            />
-            <div className="button-container">
+            <div className='email-phone-container'>
+              <input
+                type='email'
+                placeholder='Email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className='email-input'
+              />
+              <input
+                type='tel'
+                placeholder='Phone Number'
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                required
+                pattern='[0-9]{10}'
+                className='phone-input'
+              />
+            </div>
+            <div className='button-container'>
               <button
-                className="confirm-button"
-                type="submit"
+                className='confirm-button'
+                type='submit'
               >
                 Confirm Booking
               </button>
               <button
-                className="cancel-button"
-                type="button"
+                className='cancel-button'
+                type='button'
                 onClick={onClose}
               >
                 Cancel Booking

@@ -1,5 +1,5 @@
 .home-container {
-  background-image: url("../assets/images/end-of-the-world.png");
+  background-image: url("../assets/images/home-page.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -69,7 +69,7 @@
     align-self: center;
     border: 3px solid white;
     border-radius: 20px;
-    color: #fffefe;
+    color: #fff;
     font-size: 1.5rem;
     font-weight: 550;
     margin-left: 8rem;
