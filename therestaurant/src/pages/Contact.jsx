@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/contact.css";
 
 export const Contact = () => {
   return (
@@ -9,7 +10,7 @@ export const Contact = () => {
           <input
             type='text'
             className='fullname'
-            placeholder='Fullname'
+            placeholder='Full Name'
             required
           />
           <input

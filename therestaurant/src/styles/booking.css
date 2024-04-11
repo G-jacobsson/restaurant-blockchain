@@ -1,34 +1,62 @@
+.background-container {
+  background-image: url("../assets/images/book-table-page.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .booking-container {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  justify-content: center;
   margin: 2rem;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 60dvw;
+  max-height: 60dvh;
   overflow: auto;
+  background: #000;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border: 2px solid #ff0000;
 }
 
 .booking-title {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 1rem;
+  margin-top: 0;
 }
 
 .search-info {
   font-size: 1.5rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
+
+.available-sittings {
+  margin-bottom: -3.5rem;
+  margin-top: -0.2rem;
+}
+
+select {
+  margin-bottom: -3rem;
 }
 
 .search-form {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
   margin: 1rem 0;
 }
 
-input[type='date'],
+input[type="date"],
 select {
   font-size: 1rem;
   padding: 0.5rem;
@@ -39,7 +67,7 @@ select {
   margin-bottom: 0;
 }
 
-input[type='date']:hover,
+input[type="date"]:hover,
 select:hover {
   border: 1px solid #b21717;
 }
@@ -62,6 +90,7 @@ label {
   padding: 0.5rem 1rem;
   cursor: pointer;
   color: white;
+  margin-top: -1rem;
 }
 
 .booking-popup {
@@ -86,37 +115,34 @@ label {
   overflow: auto;
   z-index: 1000;
   position: relative;
+  display: block;
 }
 
 .popup-title {
   font-size: 1.8rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
 }
 
 .popup-subtitle {
   font-size: 1.5rem;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
+  margin-top: 0;
 }
 
 .popup-text {
   font-size: 1.2rem;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
 }
 
 .popup-form {
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 1rem;
-  margin: 1rem 0;
-}
-
-.button-container {
-  display: flex;
-  justify-content: space-between;
   gap: 1rem;
 }
 
@@ -141,7 +167,20 @@ input {
   border: 1px solid #ff0000;
   height: 2rem;
   border-radius: 10px;
-  width: 50%;
+  width: 45%;
+}
+
+.name-input {
+  width: 99%;
+  margin-bottom: 0;
+}
+
+.email-phone-container,
+.button-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 0;
 }
 
 .spinner {
@@ -157,9 +196,10 @@ input {
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 701px) {
   .search-form {
     flex-direction: column;
+    justify-content: center;
   }
 
   .booking-popup-content {
