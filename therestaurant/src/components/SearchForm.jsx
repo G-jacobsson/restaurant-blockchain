@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { blockchainService } from '../services/blockchainServices';
 import { SearchResults } from './SearchResults';
+import { MdClose } from 'react-icons/md';
 
 export const SearchForm = () => {
   const [numberOfGuests, setNumberOfGuests] = useState('');
@@ -49,7 +50,18 @@ export const SearchForm = () => {
 
   return (
     <>
-      {errorMsg && <div className="error-message">{errorMsg}</div>}
+      {errorMsg && (
+        <div className="error-message">
+          {errorMsg}
+          <MdClose
+            className="close-icon"
+            onClick={() => {
+              setErrorMsg('');
+              setSearchClicked(false);
+            }}
+          />
+        </div>
+      )}
       <h3 className="search-info">
         Search for available tables at your desired date here
       </h3>
@@ -92,6 +104,7 @@ export const SearchForm = () => {
           date={submittedDate}
           numberOfGuests={numberOfGuests}
           searchClicked={searchClicked}
+          errorMsg={errorMsg}
         />
       )}
     </>

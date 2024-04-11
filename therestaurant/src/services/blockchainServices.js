@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
-import { ADDRESS, ABI, RESTAURANT_ID } from '../config';
+import { ABI, RESTAURANT_ID } from '../utils/constants';
+const ADDRESS = import.meta.env.VITE_ADDRESS;
 
 const getProvider = () => {
   if (window.ethereum) {

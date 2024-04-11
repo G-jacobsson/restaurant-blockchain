@@ -10,9 +10,9 @@ export const BookingPopup = ({
   time,
   restaurantId,
 }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [bookingCreated, setBookingCreated] = useState(false);
   const [bookingfailed, setBookingFailed] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -23,9 +23,9 @@ export const BookingPopup = ({
     setIsLoading(true);
 
     try {
-      if (typeof window.ethereum !== "undefined") {
+      if (typeof window.ethereum !== 'undefined') {
         await window.ethereum.request({
-          method: "eth_requestAccounts",
+          method: 'eth_requestAccounts',
         });
 
         const combinedName = `${name} | ${email} | ${phoneNumber}`;
@@ -51,10 +51,9 @@ export const BookingPopup = ({
 
   return (
     <div
-      className='booking-popup'
+      className="booking-popup"
       onClick={onClose}
     >
-      {errorMsg && <div className="error-message">{errorMsg}</div>}
       <div>
         {isLoading ? (
           <AiOutlineLoading3Quarters className="spinner" />
@@ -77,8 +76,20 @@ export const BookingPopup = ({
             </p>
           </div>
         ) : bookingfailed ? (
-          <div className="error-message">
+          <div
+            className="error-message"
+            onClick={(e) => e.stopPropagation()}
+          >
             Failed to create booking. Please try again.
+            <br />
+            {errorMsg}
+            <MdClose
+              className="close-icon"
+              onClick={() => {
+                setBookingFailed(false);
+                setErrorMsg('');
+              }}
+            />
           </div>
         ) : (
           <div

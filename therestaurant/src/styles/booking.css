@@ -1,5 +1,5 @@
 .background-container {
-  background-image: url("../assets/images/book-table-page.jpg");
+  background-image: url('../assets/images/book-table-page.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -17,18 +17,23 @@
   margin: 2rem;
   max-width: 60dvw;
   max-height: 60dvh;
-  overflow: auto;
+  overflow: visible;
   background: #000;
   padding-left: 1rem;
   padding-right: 1rem;
   border: 2px solid #ff0000;
 }
 
+.contents {
+  overflow: auto;
+  max-height: 100%;
+}
+
 .booking-title {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 1rem;
-  margin-top: 0;
+  margin-top: 1rem;
 }
 
 .search-info {
@@ -56,7 +61,7 @@ select {
   margin: 1rem 0;
 }
 
-input[type="date"],
+input[type='date'],
 select {
   font-size: 1rem;
   padding: 0.5rem;
@@ -67,7 +72,7 @@ select {
   margin-bottom: 0;
 }
 
-input[type="date"]:hover,
+input[type='date']:hover,
 select:hover {
   border: 1px solid #b21717;
 }
@@ -185,6 +190,21 @@ input {
 
 .spinner {
   animation: spin 1s linear infinite;
+}
+
+.error-message {
+  color: white;
+  background-color: rgb(41, 40, 40);
+  font-size: 1rem;
+  max-width: 60dvw;
+  max-height: 60dvh;
+  margin: 2rem;
+  overflow: auto;
+  position: relative;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-wrap: wrap;
+  word-wrap: break-word;
 }
 
 @keyframes spin {
