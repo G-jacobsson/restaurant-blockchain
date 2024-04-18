@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import '../styles/layout.css';
 import logo from '../assets/images/logo-restaurant-hwg.jpg';
 
 export const Layout = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="container">
       <header className="site-header">
@@ -18,20 +20,42 @@ export const Layout = () => {
           <input
             type="checkbox"
             className="toggle-menu"
+            checked={menuOpen}
+            onChange={() => setMenuOpen(!menuOpen)}
           />
           <div className="hamburger"></div>
           <ul className="menu">
             <li>
-              <NavLink to={'/'}>Home</NavLink>
+              <NavLink
+                to={'/'}
+                onClick={() => setMenuOpen(false)}
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to={'/booktable'}>Book a Table</NavLink>
+              <NavLink
+                to={'/booktable'}
+                onClick={() => setMenuOpen(false)}
+              >
+                Book a Table
+              </NavLink>
             </li>
             <li>
-              <NavLink to={'/bookings'}>Bookings</NavLink>
+              <NavLink
+                to={'/bookings'}
+                onClick={() => setMenuOpen(false)}
+              >
+                Bookings
+              </NavLink>
             </li>
             <li>
-              <NavLink to={'/contact'}>Contact</NavLink>
+              <NavLink
+                to={'/contact'}
+                onClick={() => setMenuOpen(false)}
+              >
+                Contact
+              </NavLink>
             </li>
           </ul>
         </nav>

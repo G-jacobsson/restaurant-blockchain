@@ -133,6 +133,9 @@
 }
 
 @media screen and (max-width: 650px) {
+  .menu li a {
+    font-size: 1rem;
+  }
   .name-container {
     width: 75vw;
     align-items: center;
